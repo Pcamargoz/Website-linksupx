@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Code Brakers - Grupo 1 UPX | Tecnologia & Sustentabilidade</title>
+  <meta name="description" content="Site de links interativos do Grupo The Code Brakers do Projeto UPX em Tecnologia e Sustentabilidade.">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --main-bg: #0f2027;
+      --secondary-bg: #2c5364;
+      --accent: #00c853;
+      --accent-light: #b2ff59;
+      --card-bg: rgba(255,255,255,0.95);
+      --shadow: 0 8px 24px rgba(0,0,0,0.25);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Roboto', Arial, sans-serif;
+      background: linear-gradient(120deg, var(--main-bg), var(--secondary-bg));
+      min-height: 100vh;
+      color: #222;
+      overflow-x: hidden;
+    }
+
+    header {
+      text-align: center;
+      padding: 2.5rem 1rem 1.5rem 1rem;
+      background: linear-gradient(90deg, var(--main-bg) 70%, var(--accent) 120%);
+    }
+
+    header h1 {
+      font-family: 'Orbitron', 'Roboto', Arial, sans-serif;
+      color: var(--accent-light);
+      font-size: 2.8rem;
+      margin: 0 0 0.5rem 0;
+      text-shadow: 0 2px 12px #000;
+      letter-spacing: 2px;
+    }
+    header h2 {
+      color: #fff;
+      font-weight: 400;
+      font-size: 1.2rem;
+      margin: 0 0 1.5rem 0;
+      letter-spacing: 1px;
+    }
+    header .subtitle {
+      background: rgba(0,0,0,0.35);
+      display: inline-block;
+      border-radius: 12px;
+      padding: 0.3em 1em;
+      font-size: 1.1rem;
+      color: var(--accent);
+      margin-bottom: 1.2em;
+    }
+
+    .links-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      margin: 3rem auto 0 auto;
+      max-width: 1100px;
+      padding: 0 1rem 2rem 1rem;
+    }
+
+    .link-card {
+      background: var(--card-bg);
+      border-radius: 1.5rem;
+      box-shadow: var(--shadow);
+      min-width: 280px;
+      max-width: 340px;
+      flex: 1 1 300px;
+      padding: 2rem 1.5rem 1.5rem 1.5rem;
+      margin: 0.5rem 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .link-card::before {
+      content: "";
+      position: absolute;
+      left: -80px;
+      top: -80px;
+      width: 160px;
+      height: 160px;
+      background: radial-gradient(circle at 70% 30%, var(--accent-light) 0%, transparent 70%);
+      opacity: 0.10;
+      z-index: 0;
+    }
+
+    .link-card:hover {
+      transform: translateY(-6px) scale(1.03);
+      box-shadow: 0 16px 40px rgba(0, 200, 83, 0.2);
+    }
+
+    .icon-circle {
+      background: linear-gradient(120deg, var(--accent), var(--accent-light));
+      border-radius: 50%;
+      width: 68px;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.1rem;
+      box-shadow: 0 2px 12px #00c85330;
+      font-size: 2.5rem;
+      color: #fff;
+      z-index: 1;
+    }
+
+    .link-title {
+      font-family: 'Orbitron', 'Roboto', Arial, sans-serif;
+      font-size: 1.4rem;
+      color: var(--main-bg);
+      margin-bottom: 0.7rem;
+      letter-spacing: 1px;
+      z-index: 1;
+    }
+
+    .link-desc {
+      font-size: 1.05rem;
+      margin-bottom: 1.1rem;
+      color: #333;
+      text-align: center;
+      z-index: 1;
+    }
+
+    .link-btn {
+      display: inline-block;
+      background: linear-gradient(90deg, var(--accent), var(--accent-light) 80%);
+      color: #173a1b;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      padding: 0.75em 1.6em;
+      font-size: 1.05rem;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 10px #00c85333;
+      cursor: pointer;
+      letter-spacing: 0.5px;
+      z-index: 1;
+    }
+    .link-btn:hover {
+      background: linear-gradient(90deg, var(--accent-light) 60%, var(--accent) 120%);
+      color: #005c2d;
+      box-shadow: 0 4px 18px #00c85370;
+    }
+
+    footer {
+      text-align: center;
+      color: #fff;
+      margin-bottom: 1.2rem;
+      margin-top: 3rem;
+      font-size: 1rem;
+      background: none;
+    }
+
+    @media (max-width: 900px) {
+      .links-container {
+        flex-direction: column;
+        align-items: center;
+        margin-top: 2rem;
+        gap: 1.2rem;
+      }
+      .link-card {
+        min-width: 0;
+        width: 98%;
+        max-width: 420px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🌱 The Code Brakers</h1>
+    <h2>Grupo 1 UPX - Tecnologia & Sustentabilidade</h2>
+    <div class="subtitle">
+      Conectando inovação, meio ambiente e tecnologia para um futuro sustentável.
+    </div>
+  </header>
+
+  <main>
+    <div class="links-container">
+
+      <!-- Website -->
+      <div class="link-card">
+        <div class="icon-circle">
+          <span title="Website">
+            <svg height="34" width="34" viewBox="0 0 20 20" fill="none">
+              <circle cx="10" cy="10" r="9" fill="#fff" stroke="#00c853" stroke-width="2"/>
+              <path d="M5 10a5 5 0 0110 0" stroke="#00c853" stroke-width="1.6" fill="none"/>
+              <rect x="7" y="14" width="6" height="2" rx="1" fill="#00c853"/>
+            </svg>
+          </span>
+        </div>
+        <div class="link-title">Website do Projeto</div>
+        <div class="link-desc">
+          Conheça o <b>site desenvolvido</b> para o projeto, onde você pode visualizar o design, recursos e a "cara" do nosso trabalho em tecnologia sustentável.
+        </div>
+        <a class="link-btn" href="https://www.canva.com/design/DAGoHu-4yY8/BN6ADF4osijX_4yEd70Sgw/edit" target="_blank" rel="noopener">Acessar Website</a>
+      </div>
+
+      <!-- Video -->
+      <div class="link-card">
+        <div class="icon-circle">
+          <span title="Vídeo">
+            <svg width="34" height="34" fill="none" viewBox="0 0 20 20">
+              <circle cx="10" cy="10" r="9" fill="#fff" stroke="#00c853" stroke-width="2"/>
+              <polygon points="8,7 15,10 8,13" fill="#00c853"/>
+            </svg>
+          </span>
+        </div>
+        <div class="link-title">Vídeo Explicativo</div>
+        <div class="link-desc">
+          Assista ao <b>vídeo dublado</b> que demonstra o projeto em funcionamento, incluindo a integração com Arduino e suas funcionalidades.
+        </div>
+        <a class="link-btn" href="https://www.youtube.com/watch?v=GEV07l_PZxo&feature=youtu.be" target="_blank" rel="noopener">Ver Vídeo</a>
+      </div>
+
+      <!-- Trello -->
+      <div class="link-card">
+        <div class="icon-circle">
+          <span title="Trello">
+            <svg width="34" height="34" fill="none" viewBox="0 0 20 20">
+              <circle cx="10" cy="10" r="9" fill="#fff" stroke="#00c853" stroke-width="2"/>
+              <rect x="6" y="7" width="3" height="7" rx="1" fill="#00c853"/>
+              <rect x="11" y="7" width="3" height="4" rx="1" fill="#00c853"/>
+            </svg>
+          </span>
+        </div>
+        <div class="link-title">Quadro Trello</div>
+        <div class="link-desc">
+          Acompanhe o <b>progresso do projeto</b> e de cada integrante do grupo, visualizando as tarefas, papéis e etapas em andamento no Trello.
+        </div>
+        <a class="link-btn" href="https://trello.com/b/ymLTTZBQ/upx-1-semestre" target="_blank" rel="noopener">Acessar Trello</a>
+      </div>
+
+      <!-- Documentação -->
+      <div class="link-card">
+        <div class="icon-circle">
+          <span title="Documentação">
+            <svg width="34" height="34" fill="none" viewBox="0 0 20 20">
+              <circle cx="10" cy="10" r="9" fill="#fff" stroke="#00c853" stroke-width="2"/>
+              <rect x="7" y="6" width="6" height="8" rx="1" fill="#00c853"/>
+              <rect x="9" y="8" width="2" height="1" rx="0.5" fill="#fff"/>
+              <rect x="9" y="10" width="2" height="1" rx="0.5" fill="#fff"/>
+            </svg>
+          </span>
+        </div>
+        <div class="link-title">Documentação</div>
+        <div class="link-desc">
+          Encontre a <b>documentação completa</b> com uma visão ampla do projeto, incluindo metodologia, objetivos, processos e resultados.
+        </div>
+        <a class="link-btn" href="https://www.canva.com/design/DAGoHu-4yY8/BN6ADF4osijX_4yEd70Sgw/edit?ui=eyJEIjp7IlAiOnsiQiI6ZmFsc2V9fX0" target="_blank" rel="noopener">Ver Documentação</a>
+      </div>
+
+      <!-- GitHub -->
+      <div class="link-card">
+        <div class="icon-circle">
+          <span title="GitHub">
+            <svg width="34" height="34" fill="none" viewBox="0 0 20 20">
+              <circle cx="10" cy="10" r="9" fill="#fff" stroke="#00c853" stroke-width="2"/>
+              <path d="M8.5 15.5c-4.5 1-4.5-2.5-6-3m12 6v-2.1c0-.7-.2-1-0.7-1.3 2.3-.3 4.7-1.1 4.7-5A3.9 3.9 0 0 0 17 6.4c.2-.6 0-1.4-.1-2 0 0-.6-.2-2 1a6.6 6.6 0 0 0-6 0c-1.4-1.2-2-1-2-1-.1.6-.3 1.4-.1 2A3.9 3.9 0 0 0 3 10.1c0 3.9 2.4 4.7 4.7 5-.3.2-.7.7-.7 1.3V18" stroke="#00c853" stroke-width="1.2" fill="none"/>
+            </svg>
+          </span>
+        </div>
+        <div class="link-title">Repositório no GitHub</div>
+        <div class="link-desc">
+          Acesse o <b>repositório oficial no GitHub</b> para explorar o código-fonte, contribuições, histórico de desenvolvimento, além de acompanhar issues e atualizações do projeto.
+        </div>
+        <a class="link-btn" href="https://github.com/Pcamargoz/Website-linksupx" target="_blank" rel="noopener">Ver no GitHub</a>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <span>
+      &copy; 2025 The Code Brakers | Grupo 1 UPX - Projeto em Tecnologia & Sustentabilidade<br>
+      Feito com 💚 por estudantes apaixonados por inovação e meio ambiente.
+    </span>
+  </footer>
+
+  <!-- Efeito animado com JavaScript -->
+  <script>
+    // Efeito de partículas verdes para remeter à tecnologia e natureza
+    document.addEventListener('DOMContentLoaded', () => {
+      const canvas = document.createElement('canvas');
+      canvas.style.position = 'fixed';
+      canvas.style.top = 0;
+      canvas.style.left = 0;
+      canvas.style.width = '100vw';
+      canvas.style.height = '100vh';
+      canvas.style.pointerEvents = 'none';
+      canvas.style.zIndex = 0;
+      canvas.id = 'bg-particles';
+      document.body.appendChild(canvas);
+
+      const ctx = canvas.getContext('2d');
+      let particles = [];
+
+      function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      window.addEventListener('resize', resize);
+      resize();
+
+      function randomColor() {
+        const greens = [
+          '#00C853', '#B2FF59', '#A1FFCE', '#009688', '#4CAF50'
+        ];
+        return greens[Math.floor(Math.random() * greens.length)];
+      }
+
+      function createParticle() {
+        return {
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          r: 1 + Math.random() * 2.7,
+          dx: -0.1 + Math.random() * 0.2,
+          dy: 0.1 + Math.random() * 0.4,
+          color: randomColor(),
+          alpha: 0.2 + Math.random() * 0.5
+        };
+      }
+
+      function initParticles(n) {
+        particles = [];
+        for (let i = 0; i < n; i++) {
+          particles.push(createParticle());
+        }
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (let p of particles) {
+          ctx.save();
+          ctx.globalAlpha = p.alpha;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, 2 * Math.PI);
+          ctx.fillStyle = p.color;
+          ctx.shadowColor = p.color;
+          ctx.shadowBlur = 6;
+          ctx.fill();
+          ctx.restore();
+
+          p.x += p.dx;
+          p.y += p.dy;
+          if (p.y > canvas.height + 10) {
+            p.x = Math.random() * canvas.width;
+            p.y = -10;
+          }
+          if (p.x < -10 || p.x > canvas.width + 10) {
+            p.x = Math.random() * canvas.width;
+          }
+        }
+        requestAnimationFrame(animate);
+      }
+
+      initParticles(Math.max(70, Math.round(window.innerWidth / 16)));
+      animate();
+      window.addEventListener('resize', () => {
+        initParticles(Math.max(70, Math.round(window.innerWidth / 16)));
+      });
+    });
+  </script>
+</body>
+</html>
