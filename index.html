@@ -1,190 +1,254 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>The Code Brakers - Grupo 1 UPX | Tecnologia & Sustentabilidade</title>
-  <meta name="description" content="Site de links interativos do Grupo The Code Brakers do Projeto UPX em Tecnologia e Sustentabilidade.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Code Brakers - SwapStudy | Plataforma de Trocas</title>
+  <meta name="description" content="SwapStudy - Plataforma de trocas e moedas internas para estudantes. Projeto The Code Brakers - UPX." />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Orbitron:wght@600&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --main-bg: #0f2027;
-      --secondary-bg: #2c5364;
-      --accent: #00c853;
-      --accent-light: #b2ff59;
+    :root{
+      --bg-1: #0f1724;
+      --bg-2: #16213e;
+      --accent: #00d084;
+      --accent-2: #7b61ff;
       --card-bg: rgba(255,255,255,0.95);
-      --shadow: 0 8px 24px rgba(0,0,0,0.25);
+      --muted: #2b2b2b;
+      --glass: rgba(255,255,255,0.06);
+      --shadow: 0 12px 30px rgba(11,22,40,0.6);
     }
 
-    body {
-      margin: 0;
-      font-family: 'Roboto', Arial, sans-serif;
-      background: linear-gradient(120deg, var(--main-bg), var(--secondary-bg));
-      min-height: 100vh;
-      color: #222;
-      overflow-x: hidden;
+    /* Reset & base */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:'Roboto', Arial, sans-serif;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(123,97,255,0.08), transparent 5%),
+                  linear-gradient(180deg,var(--bg-1),var(--bg-2));
+      color:#0f1724;
+      -webkit-font-smoothing:antialiased;
+      overflow-x:hidden;
+      position:relative;
     }
 
-    header {
-      text-align: center;
-      padding: 2.5rem 1rem 1.5rem 1rem;
-      background: linear-gradient(90deg, var(--main-bg) 70%, var(--accent) 120%);
+    /* student doodle background (subtle) */
+    .doodle-bg{
+      position:fixed;
+      inset:0;
+      z-index:0;
+      pointer-events:none;
+      background-image: url("data:image/svg+xml;utf8,\
+        <svg xmlns='http://www.w3.org/2000/svg' width='1600' height='900' viewBox='0 0 1600 900'>\
+          <g opacity='0.06' fill='none' stroke='%23ffffff'>\
+            <path d='M1400 120c-60 10-90 50-120 90-30 40-70 90-140 100'/>\
+            <path d='M80 800c40-60 120-100 220-120 100-20 220-10 340 40'/>\
+            <g transform='translate(200,80)'>\
+              <rect x='0' y='0' width='80' height='56' rx='6'/>\
+              <path d='M8 18h64'/>\
+            </g>\
+            <g transform='translate(1100,600)'>\
+              <circle cx='0' cy='0' r='28'/>\
+              <path d='M-12 -4 l24 0'/>\
+            </g>\
+          </g>\
+        </svg>");
+      background-repeat:repeat;
+      background-size: 500px;
+      mix-blend-mode:overlay;
+      filter: blur(6px) saturate(120%);
     }
 
-    header h1 {
-      font-family: 'Orbitron', 'Roboto', Arial, sans-serif;
-      color: var(--accent-light);
-      font-size: 2.8rem;
-      margin: 0 0 0.5rem 0;
-      text-shadow: 0 2px 12px #000;
-      letter-spacing: 2px;
-    }
-    header h2 {
-      color: #fff;
-      font-weight: 400;
-      font-size: 1.2rem;
-      margin: 0 0 1.5rem 0;
-      letter-spacing: 1px;
-    }
-    header .subtitle {
-      background: rgba(0,0,0,0.35);
-      display: inline-block;
-      border-radius: 12px;
-      padding: 0.3em 1em;
-      font-size: 1.1rem;
-      color: var(--accent);
-      margin-bottom: 1.2em;
+    header{
+      position:relative;
+      z-index:2;
+      text-align:center;
+      padding:2.6rem 1rem 1.2rem;
+      color: #eafaf1;
+      background: linear-gradient(90deg, rgba(11,20,34,0.0), rgba(11,20,34,0.04));
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+      overflow:visible;
     }
 
-    .links-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2rem;
-      margin: 3rem auto 0 auto;
-      max-width: 1100px;
-      padding: 0 1rem 2rem 1rem;
+    header .top-row{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:1rem;
+      margin-bottom:0.5rem;
     }
 
-    .link-card {
-      background: var(--card-bg);
-      border-radius: 1.5rem;
+    header h1{
+      margin:0;
+      font-family:'Orbitron', 'Roboto', sans-serif;
+      font-size:2.4rem;
+      letter-spacing:1px;
+      color:var(--accent-2);
+      text-shadow: 0 6px 26px rgba(123,97,255,0.08);
+    }
+
+    header h2{
+      margin:0.25rem 0 0;
+      font-weight:400;
+      color:#d9f7e1;
+      font-size:1.05rem;
+    }
+
+    header p.lead{
+      margin:0.6rem auto 0;
+      max-width:900px;
+      color: rgba(233,250,241,0.95);
+      background: linear-gradient(90deg, rgba(0,0,0,0.12), rgba(255,255,255,0.02));
+      display:inline-block;
+      padding:0.5rem 1rem;
+      border-radius:12px;
+      font-size:0.98rem;
+    }
+
+    /* main grid */
+    main{z-index:2; position:relative; padding:2.4rem 1rem 4rem;}
+    .links-container{
+      max-width:1200px;
+      margin:2.4rem auto 0;
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:1.5rem;
+      align-items:start;
+      z-index:2;
+    }
+
+    .link-card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(250,250,250,0.95));
+      border-radius:16px;
+      padding:1.6rem;
       box-shadow: var(--shadow);
-      min-width: 280px;
-      max-width: 340px;
-      flex: 1 1 300px;
-      padding: 2rem 1.5rem 1.5rem 1.5rem;
-      margin: 0.5rem 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      transition: transform 0.2s, box-shadow 0.2s;
-      position: relative;
-      overflow: hidden;
+      min-height:220px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      text-align:center;
+      position:relative;
+      overflow:visible;
+      border:1px solid rgba(0,0,0,0.04);
     }
 
-    .link-card::before {
-      content: "";
-      position: absolute;
-      left: -80px;
-      top: -80px;
-      width: 160px;
-      height: 160px;
-      background: radial-gradient(circle at 70% 30%, var(--accent-light) 0%, transparent 70%);
-      opacity: 0.10;
-      z-index: 0;
+    .card-top{
+      display:flex;
+      align-items:center;
+      gap:0.9rem;
+      margin-bottom:0.6rem;
+      z-index:2;
     }
 
-    .link-card:hover {
-      transform: translateY(-6px) scale(1.03);
-      box-shadow: 0 16px 40px rgba(0, 200, 83, 0.2);
+    .icon-circle{
+      width:60px;
+      height:60px;
+      border-radius:50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#fff;
+      font-size:1.6rem;
+      box-shadow: 0 10px 24px rgba(11,22,40,0.18);
+      flex-shrink:0;
     }
 
-    .icon-circle {
-      background: linear-gradient(120deg, var(--accent), var(--accent-light));
-      border-radius: 50%;
-      width: 68px;
-      height: 68px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1.1rem;
-      box-shadow: 0 2px 12px #00c85330;
-      font-size: 2.5rem;
-      color: #fff;
-      z-index: 1;
+    .link-title{
+      font-family:'Orbitron', 'Roboto', sans-serif;
+      color:var(--bg-1);
+      font-size:1.2rem;
+      letter-spacing:0.8px;
     }
 
-    .link-title {
-      font-family: 'Orbitron', 'Roboto', Arial, sans-serif;
-      font-size: 1.4rem;
-      color: var(--main-bg);
-      margin-bottom: 0.7rem;
-      letter-spacing: 1px;
-      z-index: 1;
+    .link-desc{
+      color:var(--muted);
+      font-size:1rem;
+      margin:0.6rem 0 1.0rem;
+      line-height:1.35;
     }
 
-    .link-desc {
-      font-size: 1.05rem;
-      margin-bottom: 1.1rem;
-      color: #333;
-      text-align: center;
-      z-index: 1;
+    .link-btn{
+      display:inline-block;
+      padding:0.62rem 1.3rem;
+      border-radius:10px;
+      text-decoration:none;
+      font-weight:700;
+      font-size:1rem;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      color:#031018;
+      box-shadow: 0 8px 26px rgba(0,0,0,0.12);
+      transition: transform .16s, box-shadow .16s;
+    }
+    .link-btn:hover{ transform: translateY(-4px); box-shadow: 0 18px 40px rgba(0,0,0,0.18); }
+
+    /* subtle badge showing 'Moeda: Swap' */
+    .badge{
+      position:absolute;
+      top:14px;
+      right:14px;
+      background:var(--glass);
+      padding:0.28rem 0.6rem;
+      border-radius:999px;
+      font-size:0.82rem;
+      color:#dfffe6;
+      border:1px solid rgba(255,255,255,0.03);
+      backdrop-filter: blur(6px);
     }
 
-    .link-btn {
-      display: inline-block;
-      background: linear-gradient(90deg, var(--accent), var(--accent-light) 80%);
-      color: #173a1b;
-      font-weight: bold;
-      border: none;
-      border-radius: 8px;
-      padding: 0.75em 1.6em;
-      font-size: 1.05rem;
-      text-decoration: none;
-      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-      box-shadow: 0 2px 10px #00c85333;
-      cursor: pointer;
-      letter-spacing: 0.5px;
-      z-index: 1;
-    }
-    .link-btn:hover {
-      background: linear-gradient(90deg, var(--accent-light) 60%, var(--accent) 120%);
-      color: #005c2d;
-      box-shadow: 0 4px 18px #00c85370;
+    footer{
+      text-align:center;
+      color:rgba(255,255,255,0.88);
+      margin-top:2.4rem;
+      font-size:0.95rem;
+      z-index:2;
+      padding-bottom:2.4rem;
     }
 
-    footer {
-      text-align: center;
-      color: #fff;
-      margin-bottom: 1.2rem;
-      margin-top: 3rem;
-      font-size: 1rem;
-      background: none;
+    /* responsiveness */
+    @media (max-width:980px){
+      .links-container{ grid-template-columns: repeat(2, 1fr); gap:1rem; }
+      header h1{ font-size:2.1rem; }
+    }
+    @media (max-width:640px){
+      .links-container{ grid-template-columns: 1fr; }
+      header{ padding-top:1.8rem; }
+      header h1{ font-size:1.6rem; }
+      .link-card{ padding:1.2rem; }
     }
 
-    @media (max-width: 900px) {
-      .links-container {
-        flex-direction: column;
-        align-items: center;
-        margin-top: 2rem;
-        gap: 1.2rem;
-      }
-      .link-card {
-        min-width: 0;
-        width: 98%;
-        max-width: 420px;
-      }
+    /* small animated coin preview on each card (decorative) */
+    .coin-mini{
+      width:42px;
+      height:42px;
+      border-radius:50%;
+      display:inline-grid;
+      place-items:center;
+      font-weight:700;
+      color:#04221a;
+      background: radial-gradient(circle at 30% 30%, #fff7b8, #ffd456 40%, #e7a800 100%);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+      margin-top:6px;
     }
+
+    /* ensure cards overlay above coin canvas */
+    #coins-canvas{ z-index:1; position:fixed; left:0; top:0; pointer-events:none; }
+
   </style>
 </head>
 <body>
+  <!-- doodle texture -->
+  <div class="doodle-bg" aria-hidden="true"></div>
+
+  <!-- animated coins canvas (behind content but above base background) -->
+  <canvas id="coins-canvas" aria-hidden="true"></canvas>
+
   <header>
-    <h1>🌱 The Code Brakers</h1>
-    <h2>Grupo 1 UPX - Tecnologia & Sustentabilidade</h2>
-    <div class="subtitle">
-      Conectando inovação, meio ambiente e tecnologia para um futuro sustentável.
+    <div class="top-row">
+      <h1>SwapStudy — The Code Brakers</h1>
     </div>
+    <h2>Plataforma de trocas, serviços e moeda estudantil</h2>
+    <p class="lead">Troque ajuda em exercícios, mini-serviços e mentorias entre estudantes — pague com horas, serviços ou nossa moeda interna <strong>SWAP</strong>.</p>
   </header>
 
   <main>
@@ -192,186 +256,216 @@
 
       <!-- Website -->
       <div class="link-card">
-        <div class="icon-circle">
-          <span title="Website">
-            <svg height="34" width="34" viewBox="0 0 20 20" fill="none">
-              <circle cx="10" cy="10" r="9" fill="#fff" stroke="#00c853" stroke-width="2"/>
-              <path d="M5 10a5 5 0 0110 0" stroke="#00c853" stroke-width="1.6" fill="none"/>
-              <rect x="7" y="14" width="6" height="2" rx="1" fill="#00c853"/>
+        <div class="badge">Moeda: SWAP</div>
+        <div class="card-top">
+          <div class="icon-circle" aria-hidden="true">
+            <!-- simple book + bolt svg -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M6 4h12v14H6z" fill="#ffffff" opacity="0.14"/>
+              <path d="M8 6h8v2H8z" fill="#fff"/>
+              <path d="M11 12l1.5-3 1.5 3h-3z" fill="#fff"/>
             </svg>
-          </span>
+          </div>
+          <div class="link-title">Landing Page</div>
         </div>
-        <div class="link-title">Lading Page</div>
-        <div class="link-desc">
-          Conheça o <b>site desenvolvido</b> para o projeto, onde você pode visualizar o design, recursos e a "cara" do nosso trabalho em tecnologia sustentável.
+        <div class="link-desc">Conheça a apresentação do projeto SwapStudy — o design pensado para estudantes, a lógica de trocas e a visão do produto.</div>
+        <div style="display:flex;gap:10px;align-items:center;justify-content:center;width:100%;margin-top:auto">
+          <span class="coin-mini">S</span>
+          <a class="link-btn" href="https://pcamargoz.github.io/LadingPage_Upx/" target="_blank" rel="noopener">Acessar Website</a>
         </div>
-        <a class="link-btn" href="https://pcamargoz.github.io/LadingPage_Upx/" target="_blank" rel="noopener">Acessar Website</a>
       </div>
 
       <!-- Video -->
       <div class="link-card">
-        <div class="icon-circle">
-          <span title="Vídeo">
-            <svg width="34" height="34" fill="none" viewBox="0 0 20 20">
-              <circle cx="10" cy="10" r="9" fill="#fff" stroke="#00c853" stroke-width="2"/>
-              <polygon points="8,7 15,10 8,13" fill="#00c853"/>
+        <div class="badge">Demo</div>
+        <div class="card-top">
+          <div class="icon-circle" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M4 4h16v16H4z" fill="#fff" opacity="0.14"/>
+              <path d="M9 8l7 4-7 4V8z" fill="#fff"/>
             </svg>
-          </span>
+          </div>
+          <div class="link-title">Vídeo Explicativo</div>
         </div>
-        <div class="link-title">Vídeo Explicativo</div>
-        <div class="link-desc">
-          Assista ao <b>vídeo dublado</b> que demonstra o projeto em funcionamento, incluindo a integração com Arduino e suas funcionalidades.
+        <div class="link-desc">Assista ao vídeo que demonstra o fluxo de trocas e a integração com hardware (ex.: Arduino) usada no protótipo.</div>
+        <div style="display:flex;gap:10px;align-items:center;justify-content:center;width:100%;margin-top:auto">
+          <span class="coin-mini">★</span>
+          <a class="link-btn" href="https://youtu.be/3Ita-7HfnaE?si=SZbw58zL9gYwXmEv" target="_blank" rel="noopener">Ver Vídeo</a>
         </div>
-        <a class="link-btn" href="https://youtu.be/3Ita-7HfnaE?si=SZbw58zL9gYwXmEv" target="_blank" rel="noopener">Ver Vídeo</a>
       </div>
 
       <!-- Trello -->
       <div class="link-card">
-        <div class="icon-circle">
-          <span title="Trello">
-            <svg width="34" height="34" fill="none" viewBox="0 0 20 20">
-              <circle cx="10" cy="10" r="9" fill="#fff" stroke="#00c853" stroke-width="2"/>
-              <rect x="6" y="7" width="3" height="7" rx="1" fill="#00c853"/>
-              <rect x="11" y="7" width="3" height="4" rx="1" fill="#00c853"/>
+        <div class="badge">Equipe</div>
+        <div class="card-top">
+          <div class="icon-circle" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M6 7h3v10H6zM11 7h3v6h-3z" fill="#fff"/>
             </svg>
-          </span>
+          </div>
+          <div class="link-title">Quadro Trello</div>
         </div>
-        <div class="link-title">Quadro Trello</div>
-        <div class="link-desc">
-          Acompanhe o <b>progresso do projeto</b> e de cada integrante do grupo, visualizando as tarefas, papéis e etapas em andamento no Trello.
+        <div class="link-desc">Acompanhe tarefas, milestones e quem está trabalhando nas trocas e funcionalidades do app.</div>
+        <div style="display:flex;gap:10px;align-items:center;justify-content:center;width:100%;margin-top:auto">
+          <span class="coin-mini">S</span>
+          <a class="link-btn" href="https://trello.com/b/6UMPn9yb/projeto-upx-ads-ead" target="_blank" rel="noopener">Acessar Trello</a>
         </div>
-        <a class="link-btn" href="https://trello.com/b/6UMPn9yb/projeto-upx-ads-ead" target="_blank" rel="noopener">Acessar Trello</a>
       </div>
 
       <!-- Documentação -->
       <div class="link-card">
-        <div class="icon-circle">
-          <span title="Documentação">
-            <svg width="34" height="34" fill="none" viewBox="0 0 20 20">
-              <circle cx="10" cy="10" r="9" fill="#fff" stroke="#00c853" stroke-width="2"/>
-              <rect x="7" y="6" width="6" height="8" rx="1" fill="#00c853"/>
-              <rect x="9" y="8" width="2" height="1" rx="0.5" fill="#fff"/>
-              <rect x="9" y="10" width="2" height="1" rx="0.5" fill="#fff"/>
+        <div class="badge">Docs</div>
+        <div class="card-top">
+          <div class="icon-circle" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M7 6h10v12H7z" fill="#fff" opacity="0.14"/>
+              <path d="M9 8h6v1H9zM9 11h6v1H9z" fill="#fff"/>
             </svg>
-          </span>
+          </div>
+          <div class="link-title">Documentação</div>
         </div>
-        <div class="link-title">Documentação</div>
-        <div class="link-desc">
-          Encontre a <b>documentação completa</b> com uma visão ampla do projeto, incluindo metodologia, objetivos, processos e resultados.
+        <div class="link-desc">Metodologia, requisitos, arquitetura e roteiros de entrega — tudo documentado para o time e a banca.</div>
+        <div style="display:flex;gap:10px;align-items:center;justify-content:center;width:100%;margin-top:auto">
+          <span class="coin-mini">S</span>
+          <a class="link-btn" href="https://www.canva.com/design/DAGoHu-4yY8/BN6ADF4osijX_4yEd70Sgw/edit" target="_blank" rel="noopener">Ver Documentação</a>
         </div>
-        <a class="link-btn" href="https://www.canva.com/design/DAGoHu-4yY8/BN6ADF4osijX_4yEd70Sgw/edit" target="_blank" rel="noopener">Ver Documentação</a>
       </div>
 
       <!-- GitHub -->
       <div class="link-card">
-        <div class="icon-circle">
-          <span title="GitHub">
-            <svg width="34" height="34" fill="none" viewBox="0 0 20 20">
-              <circle cx="10" cy="10" r="9" fill="#fff" stroke="#00c853" stroke-width="2"/>
-              <path d="M8.5 15.5c-4.5 1-4.5-2.5-6-3m12 6v-2.1c0-.7-.2-1-0.7-1.3 2.3-.3 4.7-1.1 4.7-5A3.9 3.9 0 0 0 17 6.4c.2-.6 0-1.4-.1-2 0 0-.6-.2-2 1a6.6 6.6 0 0 0-6 0c-1.4-1.2-2-1-2-1-.1.6-.3 1.4-.1 2A3.9 3.9 0 0 0 3 10.1c0 3.9 2.4 4.7 4.7 5-.3.2-.7.7-.7 1.3V18" stroke="#00c853" stroke-width="1.2" fill="none"/>
+        <div class="badge">Código</div>
+        <div class="card-top">
+          <div class="icon-circle" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 2C7.6 2 4 5.6 4 10c0 3.5 2.3 6.5 5.5 7.5.4.1.6-.2.6-.5v-1.9c-2.2.5-2.7-1-2.7-1-.3-.8-.8-1-1-1-.8-.6.1-.6.1-.6.9.1 1.4.9 1.4.9.8 1.4 2.1 1 .6.7-.4-.1-.8-.5-1.1-.9-.3-.4-.7-1.4-.2-2.1 0 0 .9-.3 3 .9 2.5 1.6 5.2.2 6.5-1.1.1-.9.4-1.5.7-1.8C18.1 8 16.5 7.9 16.5 7.9c-.7-1.5-2.1-1.6-2.3-1.5.1-.3.3-.8.3-1.8 0-1.3-.5-2.4-2.1-2.4-1.4 0-2.2.9-2.2 1.9 0 .5.1 1 .4 1.3-1.1.1-2.2.6-2.2.6-.6.3-1.3.6-1.7 1.2-.6 1-.2 2.1.4 2.6.5.4.9.6 1.4.6.6 0 1-.2 1.4-.5.1-.3.5-1 .9-1.5.6-.8 1.7-1.8 3.1-1.8 1.4 0 2.3 1 2.3 2.6v3.1c0 .3.2.7.6.5C20 16.5 22 13.5 22 10c0-4.4-3.6-8-10-8z" fill="#fff"/>
             </svg>
-          </span>
+          </div>
+          <div class="link-title">Repositório no GitHub</div>
         </div>
-        <div class="link-title">Repositório no GitHub</div>
-        <div class="link-desc">
-          Acesse o <b>repositório oficial no GitHub</b> para explorar o código-fonte, contribuições, histórico de desenvolvimento, além de acompanhar issues e atualizações do projeto.
+        <div class="link-desc">Código-fonte, issues e histórico do projeto — contribuições e instruções para rodar localmente.</div>
+        <div style="display:flex;gap:10px;align-items:center;justify-content:center;width:100%;margin-top:auto">
+          <span class="coin-mini">S</span>
+          <a class="link-btn" href="https://github.com/Pcamargoz/Website-linksupx" target="_blank" rel="noopener">Ver no GitHub</a>
         </div>
-        <a class="link-btn" href="https://github.com/Pcamargoz/Website-linksupx" target="_blank" rel="noopener">Ver no GitHub</a>
       </div>
 
     </div>
   </main>
 
   <footer>
-    <span>
-      &copy; 2025 The Code Brakers | Grupo 1 UPX - Projeto em Tecnologia & Sustentabilidade<br>
-      Feito com 💚 por estudantes apaixonados por inovação e meio ambiente.
-    </span>
+    &copy; 2025 The Code Brakers | SwapStudy — Plataforma de trocas estudantis<br>
+    Feito com 💚 por estudantes — ideia, design e protótipo.
   </footer>
 
-  <!-- Efeito animado com JavaScript -->
+  <!-- Coin animation script -->
   <script>
-    // Efeito de partículas verdes para remeter à tecnologia e natureza
-    document.addEventListener('DOMContentLoaded', () => {
-      const canvas = document.createElement('canvas');
-      canvas.style.position = 'fixed';
-      canvas.style.top = 0;
-      canvas.style.left = 0;
-      canvas.style.width = '100vw';
-      canvas.style.height = '100vh';
-      canvas.style.pointerEvents = 'none';
-      canvas.style.zIndex = 0;
-      canvas.id = 'bg-particles';
-      document.body.appendChild(canvas);
-
+    (function(){
+      const canvas = document.getElementById('coins-canvas');
       const ctx = canvas.getContext('2d');
-      let particles = [];
+      let W = window.innerWidth;
+      let H = window.innerHeight;
+      canvas.width = W;
+      canvas.height = H;
 
-      function resize() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-      }
-      window.addEventListener('resize', resize);
-      resize();
+      // coin palette (gradients will be drawn)
+      const palettes = [
+        {inner:'#fff7b8', mid:'#ffd456', edge:'#e7a800'},
+        {inner:'#eafff5', mid:'#75f0b8', edge:'#00c184'},
+        {inner:'#e6f0ff', mid:'#a6c8ff', edge:'#5b7fff'}
+      ];
 
-      function randomColor() {
-        const greens = [
-          '#00C853', '#B2FF59', '#A1FFCE', '#009688', '#4CAF50'
-        ];
-        return greens[Math.floor(Math.random() * greens.length)];
-      }
-
-      function createParticle() {
+      function rand(min,max){return Math.random()*(max-min)+min}
+      function createCoin(){
         return {
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          r: 1 + Math.random() * 2.7,
-          dx: -0.1 + Math.random() * 0.2,
-          dy: 0.1 + Math.random() * 0.4,
-          color: randomColor(),
-          alpha: 0.2 + Math.random() * 0.5
+          x: rand(0, W),
+          y: rand(-H*0.5, -10),
+          r: rand(8, 20),
+          vy: rand(30, 120)/100, // vertical speed
+          vx: (Math.random()-0.5)*0.6,
+          rot: rand(0, Math.PI*2),
+          spin: (Math.random()-0.5)*0.06,
+          palette: palettes[Math.floor(Math.random()*palettes.length)],
+          alpha: rand(0.6, 1.0),
         };
       }
 
-      function initParticles(n) {
-        particles = [];
-        for (let i = 0; i < n; i++) {
-          particles.push(createParticle());
-        }
+      let coins = [];
+      function init(n){
+        coins = [];
+        for(let i=0;i<n;i++) coins.push(createCoin());
       }
 
-      function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        for (let p of particles) {
-          ctx.save();
-          ctx.globalAlpha = p.alpha;
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.r, 0, 2 * Math.PI);
-          ctx.fillStyle = p.color;
-          ctx.shadowColor = p.color;
-          ctx.shadowBlur = 6;
-          ctx.fill();
-          ctx.restore();
+      function drawCoin(c){
+        const g = ctx.createLinearGradient(c.x-c.r, c.y-c.r, c.x+c.r, c.y+c.r);
+        g.addColorStop(0, c.palette.inner);
+        g.addColorStop(0.6, c.palette.mid);
+        g.addColorStop(1, c.palette.edge);
+        ctx.save();
+        ctx.globalAlpha = c.alpha * 0.95;
+        ctx.translate(c.x, c.y);
+        ctx.rotate(c.rot);
+        // coin circle
+        ctx.beginPath();
+        ctx.arc(0,0,c.r,0,Math.PI*2);
+        ctx.fillStyle = g;
+        ctx.fill();
+        // inner shine
+        ctx.beginPath();
+        ctx.arc(-c.r*0.25, -c.r*0.25, c.r*0.42, 0, Math.PI*2);
+        ctx.fillStyle = "rgba(255,255,255,0.18)";
+        ctx.fill();
+        // symbol (S)
+        ctx.font = Math.round(c.r*1.05) + "px sans-serif";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillStyle = "rgba(3,34,24,0.95)";
+        ctx.fillText('S', 0, 0);
+        ctx.restore();
+      }
 
-          p.x += p.dx;
-          p.y += p.dy;
-          if (p.y > canvas.height + 10) {
-            p.x = Math.random() * canvas.width;
-            p.y = -10;
-          }
-          if (p.x < -10 || p.x > canvas.width + 10) {
-            p.x = Math.random() * canvas.width;
+      let then = performance.now();
+      function animate(now){
+        const dt = Math.min(40, now - then) / 1000;
+        then = now;
+        ctx.clearRect(0,0,W,H);
+        for(let c of coins){
+          c.y += c.vy * (50 * dt * (0.8 + c.r/20));
+          c.x += c.vx * (50 * dt);
+          c.rot += c.spin * (0.8 + c.r/20);
+          drawCoin(c);
+          // recycle
+          if(c.y - c.r > H + 30){
+            Object.assign(c, createCoin(), {y: rand(-200, -10)});
           }
         }
         requestAnimationFrame(animate);
       }
 
-      initParticles(Math.max(70, Math.round(window.innerWidth / 16)));
-      animate();
-      window.addEventListener('resize', () => {
-        initParticles(Math.max(70, Math.round(window.innerWidth / 16)));
+      // adapt to size
+      function onResize(){
+        W = window.innerWidth; H = window.innerHeight;
+        canvas.width = W; canvas.height = H;
+        // set number of coins proportional to width
+        const n = Math.max(28, Math.round(W/28));
+        init(n);
+      }
+
+      window.addEventListener('resize', onResize);
+      onResize();
+      requestAnimationFrame(animate);
+
+      // subtle parallax on mouse move
+      window.addEventListener('mousemove', (e)=>{
+        const mx = (e.clientX - W/2)/ (W/2);
+        const my = (e.clientY - H/2)/ (H/2);
+        // nudge each coin slightly
+        for(let i=0;i<coins.length;i++){
+          const c = coins[i];
+          c.x += mx * (0.2 + (i%3)*0.08);
+          c.y += my * (0.08 + (i%4)*0.02);
+        }
       });
-    });
+    })();
   </script>
 </body>
 </html>
